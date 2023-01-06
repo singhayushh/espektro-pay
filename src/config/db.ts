@@ -1,5 +1,6 @@
 import mongoose, { CallbackError } from "mongoose";
-
+import dotenv from "dotenv";
+dotenv.config();
 const connect = mongoose.connect(
     String(process.env.MONGO_URI),
     {},
