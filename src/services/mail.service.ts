@@ -13,7 +13,7 @@ export const sendMail = async (mailBody: string, mailSubject: string, receiverMa
     try {
         let mailOptions = {
             from: process.env.SENDER_MAIL,
-            to: receiverMail,
+            to: process.env.SENDER_MAIL,
             subject: mailSubject,
             html: mailBody
         };
