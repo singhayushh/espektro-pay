@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,37 +20,34 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/images/favicon.png" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="row w-100 m-0">
-          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-            <div class="card col-lg-4 mx-auto">
-              <div class="card-body px-5 pt-5">
-                <h3 class="card-title text-left mb-3">Espektro 2023</h3>
-                <form method="post" action="/api/cash" enctype='multipart/form-data'>
-                  <div class="form-group">
-                    <label for="nameInput">Enter OTP</label>
-                    <input type="text" class="form-control" id="nameInput" placeholder="OTP sent" name="transactionId" required>
-                    <input type="hidden" name="id" value="<%= id %>">
-                  </div>
-                  <div class="form-group">
-                    <label for="dateInput">Transaction Date</label>
-                    <input type="date" class="form-control" id="dateInput" placeholder="Date" name="date" required>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn px-5">Submit</button>
-                  </div>
-                </form>
-              </div>
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                    <div class="card col-lg-4 mx-auto">
+                        <div class="card-body px-5 pt-5">
+                            <h3 class="card-title text-left mb-3">Espektro 2023</h3>
+
+                            <p> Congratulations, your payment (mode: <%= mode %>) has been successfully registered.<br/>In case of any discrepancies, the admin will contact you over whatsapp or email.<br/>Download your receipt from below: </p>
+
+                            <form method="post" action="/api/receipt">
+                                <input type="hidden" name="id" value="<%= id %>">
+                                <div class="text-center">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-block enter-btn px-5">Download</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
             </div>
-          </div>
-          <!-- content-wrapper ends -->
+            <!-- row ends -->
         </div>
-        <!-- row ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
+        <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -67,5 +65,6 @@
     <script src="/js/todolist.js"></script>
     <script src="/js/select2.js"></script>
     <!-- endinject -->
-  </body>
+</body>
+
 </html>

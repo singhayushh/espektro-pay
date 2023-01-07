@@ -1,12 +1,23 @@
 import { Request, Response } from "express";
 import { paymentInitDto } from "../dtos/payment.dtos";
 import { sendMail } from "../services/mail.service";
-import { fetchPaymentById, initiatePaymentContext, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
+import { fetchPaymentById, fetchPayments, initiatePaymentContext, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
 import { generateOtp } from "../utils/helper";
 
 export const RenderLandingPage = async (req: Request, res: Response) => {
     const { message } = req.query;
     res.render('index', { message });
+}
+
+export const RenderDashboard = async (req: Request, res: Response) => {
+    try {
+        const page: number = Number(req.query.page) || 0;
+        const limit: number = Number(req.query.limit) || 10;
+        const data = await fetchPayments(page, limit);
+        res.render("dashboard", { page, data });
+    } catch (error: any) {
+        res.redirect("/?message=server error")
+    }
 }
 
 export const PaymentTypeHandler = async (req: Request, res: Response) => {
@@ -56,12 +67,12 @@ export const OTPHandler = async (req: Request, res: Response) => {
     const pay = await fetchPaymentById(id);
     if (!pay || pay.transactionId != req.body.otp) res.redirect("/?message=Invalid otp")
     await updateCashPayment(id, transactionId, date)
-    res.redirect("/")
+    res.render("success", { id, mode: "cash" })
 };
 
 export const TransactionHandler = async (req: Request, res: Response) => {
  const path = String(req.file?.path);
  const { id, transactionId, date } = req.body;
     await updateTransactionPayment(id, transactionId, path, date)
-    res.redirect("/")
+    res.render("success", { id, mode: "online" })
 };

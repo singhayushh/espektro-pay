@@ -18,3 +18,7 @@ export const updateTransactionPayment = async (id: any, transactionId: string, r
 export const fetchPaymentById = async (id: any) => {
     return await Payment.findById(id);
 }
+
+export const fetchPayments = async (page: number, limit: number) => {
+    return await Payment.find().sort({ createdAt: -1 }).skip(page).limit(10);
+};

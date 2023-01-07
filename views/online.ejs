@@ -32,11 +32,15 @@
                   <div class="form-group">
                     <label for="nameInput">Transaction ID</label>
                     <input type="text" class="form-control" id="nameInput" placeholder="Transaction ID" name="transactionId" required>
-                    <input type="text" name="id" hidden value="<%= id %>">
+                    <input type="hidden" name="id" value="<%= id %>">
                   </div>
                   <div class="form-group">
-                    <label for="nameInput">Screenshot / Receipt</label>
-                    <input type="file" class="form-control" id="nameInput" placeholder="Attach file ..." name="receipt" required>
+                    <label for="dateInput">Transaction Date</label>
+                    <input type="date" class="form-control" id="dateInput" placeholder="Date" name="date" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="receiptInput">Screenshot / Receipt</label>
+                    <input type="file" class="form-control" id="receiptInput" placeholder="Attach file ..." name="receipt" required>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn px-5">Submit</button>
