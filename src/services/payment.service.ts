@@ -22,3 +22,7 @@ export const fetchPaymentById = async (id: any) => {
 export const fetchPayments = async (page: number, limit: number) => {
     return await Payment.find().sort({ createdAt: -1 }).skip(page).limit(10);
 };
+
+export const deletePaymentById = async (id: any) => {
+    return await Payment.deleteOne({ _id: id });
+};

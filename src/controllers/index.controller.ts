@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { paymentInitDto } from "../dtos/payment.dtos";
 import { sendMail } from "../services/mail.service";
-import { fetchPaymentById, fetchPayments, initiatePaymentContext, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
+import { deletePaymentById, fetchPaymentById, fetchPayments, initiatePaymentContext, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
 import { generateOtp } from "../utils/helper";
 
 export const RenderLandingPage = async (req: Request, res: Response) => {
@@ -64,15 +64,28 @@ export const PaymentTypeHandler = async (req: Request, res: Response) => {
 
 export const OTPHandler = async (req: Request, res: Response) => {
     const { id, transactionId, date } = req.body;
-    const pay = await fetchPaymentById(id);
-    if (!pay || pay.transactionId != req.body.otp) res.redirect("/?message=Invalid otp")
-    await updateCashPayment(id, transactionId, date)
-    res.render("success", { id, mode: "cash" })
+    try {
+        const pay = await fetchPaymentById(id);
+        if (!pay || pay.transactionId != transactionId) {
+            await deletePaymentById(id);
+            res.redirect("/?message=Invalid otp");
+        }
+        await updateCashPayment(id, transactionId, date)
+        res.render("success", { id, mode: "cash" })
+    } catch (error: any) {
+        await deletePaymentById(id);
+        res.redirect("/?message=server error")
+    }
 };
 
 export const TransactionHandler = async (req: Request, res: Response) => {
- const path = String(req.file?.path);
- const { id, transactionId, date } = req.body;
-    await updateTransactionPayment(id, transactionId, path, date)
-    res.render("success", { id, mode: "online" })
+    const path = String(req.file?.path);
+    const { id, transactionId, date } = req.body;
+    try {
+        await updateTransactionPayment(id, transactionId, path, date)
+        res.render("success", { id, mode: "online" })
+    } catch (error: any) {
+        await deletePaymentById(id);
+        res.redirect("/?message=server error")
+    }
 };

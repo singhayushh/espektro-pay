@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Espektro'23 | Payments</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
@@ -57,7 +57,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
+                <!-- <li class="nav-item menu-items">
                     <a class="nav-link" href="/dashboard/online">
                         <span class="menu-icon">
                             <i class="mdi mdi-web"></i>
@@ -72,7 +72,7 @@
                         </span>
                         <span class="menu-title">Cash Only</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- partial -->
@@ -99,7 +99,7 @@
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
                                     <img class="img-xs rounded-circle" src="/images/faces/face15.jpg" alt="">
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Sayantan Biswas</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
                             </a>
@@ -142,10 +142,10 @@
                                                         #
                                                     </th>
                                                     <th> Name </th>
+                                                    <th> Mode </th>
                                                     <th> Dept. </th>
                                                     <th> Year </th>
                                                     <th> Phone </th>
-                                                    <th> Email </th>
                                                     <th> Transaction Date </th>
                                                     <th> Receipt </th>
                                                 </tr>
@@ -157,15 +157,30 @@
                                                         <%= (i+1) %>
                                                     </td>
                                                     <td>
-                                                        <span class="ps-2"><%= data[i].name %></span>
+                                                        <h5><%= data[i].name %></h5>
+                                                        <p class="text-sm text-secondary"><%= data[i].email %></p>
+                                                    </td>
+                                                    <td>
+                                                        <%if (data[i].paymentType == "Cash") { %>
+                                                            <label class="badge badge-success">
+                                                                Cash
+                                                            </label>
+                                                        <% } else { %>
+                                                            <label class="badge badge-primary">
+                                                                Online
+                                                            </label>
+                                                        <% } %>
                                                     </td>
                                                     <td> <%= data[i].department%> </td>
                                                     <td> <%= data[i].year %> </td>
                                                     <td> <%= data[i].phone %> </td>
-                                                    <td> <%= data[i].email %> </td>
-                                                    <td> <%= (data[i].createdAt).toLocaleDateString("en-US", {year: 'numeric' , month: 'short' , day: 'numeric' })  %> </td>
+                                                    <td> <%= (data[i].transactionDate).toLocaleDateString("en-US", {year: 'numeric' , month: 'short' , day: 'numeric' })  %> </td>
                                                     <td>
-                                                        <a href="/receipt/<%= data[i]._id %>" style="text-decoration: none;" class="badge badge-outline-success">Download</a>
+                                                        <a href="/receipt/<%= data[i]._id %>">
+                                                            <button class="btn btn-outline-success">
+                                                                Download
+                                                            </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 <% } %>
