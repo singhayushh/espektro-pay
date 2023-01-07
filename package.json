@@ -5,8 +5,8 @@
   "main": "build/app.js",
   "scripts": {
     "build": "tsc -p .",
-    "dev": "node build/app.js",
-    "start": "tsc -p . && node build/app.js",
+    "dev": "tsc -p . && node build/app.js",
+    "start": "node build/app.js",
     "prettify": "npx prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
