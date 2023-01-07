@@ -50,6 +50,8 @@ const PaymentSchema: Schema<paymentSchema> = new Schema(
     }
 );
 
+PaymentSchema.index({ name: "text", email: "text", phone: "text", year: "text", department: "text", transactionId: "text" });
+
 export const Payment: Model<paymentSchema> = model(
     "Payment",
     PaymentSchema

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { paymentInitDto } from "../dtos/payment.dtos";
 import { sendMail } from "../services/mail.service";
-import { deletePaymentById, fetchPaymentById, fetchPayments, initiatePaymentContext, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
+import { deletePaymentById, fetchPaymentById, fetchPayments, initiatePaymentContext, searchPayments, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
 import { generateOtp } from "../utils/helper";
 
 export const RenderLandingPage = async (req: Request, res: Response) => {
@@ -86,6 +86,16 @@ export const TransactionHandler = async (req: Request, res: Response) => {
         res.render("success", { id, mode: "online" })
     } catch (error: any) {
         await deletePaymentById(id);
+        res.redirect("/?message=server error")
+    }
+};
+
+export const SearchHandler = async (req: Request, res: Response) => {
+    const query = req.body.query;
+    try {
+        const data = await searchPayments(query);
+        res.render("dashboard", { page: 1, data })
+    } catch (error: any) {
         res.redirect("/?message=server error")
     }
 };

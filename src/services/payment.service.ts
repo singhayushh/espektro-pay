@@ -26,3 +26,7 @@ export const fetchPayments = async (page: number, limit: number) => {
 export const deletePaymentById = async (id: any) => {
     return await Payment.deleteOne({ _id: id });
 };
+
+export const searchPayments = async (query: string) => {
+    return await Payment.find({ $text: { $search: query } });
+};

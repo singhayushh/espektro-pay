@@ -9,6 +9,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css"/>
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="/vendors/jvectormap/jquery-jvectormap.css">
@@ -90,7 +91,7 @@
                     <ul class="navbar-nav w-100">
                         <li class="nav-item w-100">
                             <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" method="post" action="/search">
-                                <input type="text" class="form-control" placeholder="Search products" name="query">
+                                <input type="text" class="form-control" placeholder="Search students" name="query">
                             </form>
                         </li>
                     </ul>
@@ -135,7 +136,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Recorded Payments</h4>
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>
@@ -177,9 +178,7 @@
                                                     <td> <%= (data[i].transactionDate).toLocaleDateString("en-US", {year: 'numeric' , month: 'short' , day: 'numeric' })  %> </td>
                                                     <td>
                                                         <a href="/receipt/<%= data[i]._id %>">
-                                                            <button class="btn btn-outline-success">
-                                                                Download
-                                                            </button>
+                                                            <label for="" class="badge badge-outline-success">Download</label>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -222,6 +221,7 @@
     <script src="/js/misc.js"></script>
     <script src="/js/settings.js"></script>
     <script src="/js/todolist.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="/js/dashboard.js"></script>
