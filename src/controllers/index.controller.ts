@@ -70,8 +70,8 @@ export const OTPHandler = async (req: Request, res: Response) => {
             await deletePaymentById(id);
             res.redirect("/?message=Invalid otp");
         }
-        await updateCashPayment(id, transactionId, date)
-        res.render("success", { id, mode: "cash" })
+        const data = await updateCashPayment(id, transactionId, date);
+        res.render("success", { id, mode: "cash", data })
     } catch (error: any) {
         await deletePaymentById(id);
         res.redirect("/?message=server error")
@@ -82,8 +82,8 @@ export const TransactionHandler = async (req: Request, res: Response) => {
     const path = String(req.file?.path);
     const { id, transactionId, date } = req.body;
     try {
-        await updateTransactionPayment(id, transactionId, path, date)
-        res.render("success", { id, mode: "online" })
+        const data = await updateTransactionPayment(id, transactionId, path, date)
+        res.render("success", { id, mode: "online", data })
     } catch (error: any) {
         await deletePaymentById(id);
         res.redirect("/?message=server error")
