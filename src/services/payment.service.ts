@@ -7,12 +7,12 @@ export const initiatePaymentContext = async (dto: paymentInitDto) => {
     return newPayment.save();
 }
 
-export const updateCashPayment = async (id: any, transactionId: string, transactionDate: Date) =>{
-    return await Payment.findByIdAndUpdate(id, { transactionId, transactionDate });
+export const updateCashPayment = async (id: any, transactionId: string, transactionDate: Date) => {
+    return await Payment.findByIdAndUpdate(id, { transactionId, transactionDate }, { returnDocument: 'after' });
 }
 
-export const updateTransactionPayment = async (id: any, transactionId: string, receiptUrl: string, transactionDate: Date ) =>{
-    return await Payment.findByIdAndUpdate(id, { transactionId, receiptUrl, transactionDate });
+export const updateTransactionPayment = async (id: any, transactionId: string, receiptUrl: string, transactionDate: Date) => {
+    return await Payment.findByIdAndUpdate(id, { transactionId, receiptUrl, transactionDate }, { returnDocument: 'after' });
 }
 
 export const fetchPaymentById = async (id: any) => {
