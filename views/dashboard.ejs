@@ -9,7 +9,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="/vendors/jvectormap/jquery-jvectormap.css">
@@ -152,43 +152,61 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <% for (var i = 0; i < data.length; i++) { %>
-                                                <tr>
-                                                    <td>
-                                                        <%= (i+1) %>
-                                                    </td>
-                                                    <td>
-                                                        <h5><%= data[i].name %></h5>
-                                                        <p class="text-sm text-secondary"><%= data[i].email %></p>
-                                                    </td>
-                                                    <td>
-                                                        <%if (data[i].paymentType == "Cash") { %>
-                                                            <label class="badge badge-success">
-                                                                Cash
-                                                            </label>
-                                                        <% } else { %>
-                                                            <label class="badge badge-primary">
-                                                                Online
-                                                            </label>
-                                                        <% } %>
-                                                    </td>
-                                                    <td> <%= data[i].department%> </td>
-                                                    <td> <%= data[i].year %> </td>
-                                                    <td> <%= data[i].phone %> </td>
-                                                    <td> <%= (data[i].transactionDate).toLocaleDateString("en-US", {year: 'numeric' , month: 'short' , day: 'numeric' })  %> </td>
-                                                    <td>
-                                                        <a href="/receipt/<%= data[i]._id %>">
-                                                            <label for="" class="badge badge-outline-success">Download</label>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <% } %>
+                                                <% for (var i=0; i < data.length; i++) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= (i+1) %>
+                                                        </td>
+                                                        <td>
+                                                            <h5>
+                                                                <%= data[i].name %>
+                                                            </h5>
+                                                            <p class="text-sm text-secondary">
+                                                                <%= data[i].email %>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <%if (data[i].paymentType=="Cash" ) { %>
+                                                                <label class="badge badge-success">
+                                                                    Cash
+                                                                </label>
+                                                                <% } else { %>
+                                                                    <label class="badge badge-primary">
+                                                                        Online
+                                                                    </label>
+                                                                    <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[i].department%>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[i].year %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[i].phone %>
+                                                        </td>
+                                                        <td>
+                                                            <%= (data[i].transactionDate).toLocaleDateString("en-US",
+                                                                {year: 'numeric' , month: 'short' , day: 'numeric' }) %>
+                                                        </td>
+                                                        <td>
+                                                            <a href="/receipt/<%= data[i]._id %>">
+                                                                <label for=""
+                                                                    class="badge badge-outline-success">Download</label>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
                                             </tbody>
                                         </table>
                                         <div class="row w-100 d-flex flex-row justify-content-end pt-4">
-                                            <div class="btn-group" role="group" aria-label="Basic example" style="width: max-content;">
-                                                <a href="/dashboard?limit=10&page=<%= page > 0 ? page - 1 : 0 %>" class="btn btn-outline-secondary"><</a>
-                                                <a href="/dashboard?limit=10&page=<%= page + 1 %>" class="btn btn-outline-secondary">></a>
+                                            <div class="btn-group" role="group" aria-label="Basic example"
+                                                style="width: max-content;">
+                                                <a href="/dashboard?limit=10&page=<%= page > 0 ? page - 1 : 0 %>"
+                                                    class="btn btn-outline-secondary">
+                                                    << /a>
+                                                        <a href="/dashboard?limit=10&page=<%= page + 1 %>"
+                                                            class="btn btn-outline-secondary">></a>
                                             </div>
                                         </div>
                                     </div>
@@ -204,6 +222,15 @@
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
+    <footer class="footer w-100">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"></span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> By <a
+                    href="https://linkedin.com/in/arcqq" target="_blank" class="text-info"
+                    style="text-decoration: none">Arc.</a></span>
+        </div>
+    </footer>
     <!-- plugins:js -->
     <script src="/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
