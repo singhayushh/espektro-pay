@@ -1,6 +1,7 @@
 import { Document } from "mongoose";
 
 export interface paymentSchema extends Document {
+    serial: number,
     name: string,
     email: string,
     phone: string,

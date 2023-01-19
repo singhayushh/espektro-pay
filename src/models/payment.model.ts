@@ -3,6 +3,10 @@ import { paymentSchema } from "../dtos/payment.dtos";
 
 const PaymentSchema: Schema<paymentSchema> = new Schema(
     {
+        serial: {
+            type: Number,
+            default: 0,
+        },
         name: {
             type: String,
             required: true,
@@ -51,6 +55,30 @@ const PaymentSchema: Schema<paymentSchema> = new Schema(
 );
 
 PaymentSchema.index({ name: "text", email: "text", phone: "text", year: "text", department: "text", transactionId: "text" });
+
+const counterSchema = new Schema({
+    _id: {
+        type: String,
+        required: true,
+    },
+    seq: {
+        type: Number,
+        default: 0,
+    },
+});
+
+const Counter = model('Counter', counterSchema);
+
+PaymentSchema.pre('save', function(next) {
+    if(!this.isNew) next();
+    var doc = this;
+    Counter.findByIdAndUpdate({_id: 'payments'}, {$inc: { seq: 1} }, {new: true, upsert: true}, function(error, counter)   {
+        if(error)
+            return next(error);
+        doc.serial = counter ? counter.seq : 0;
+        next();
+    });
+});
 
 export const Payment: Model<paymentSchema> = model(
     "Payment",

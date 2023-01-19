@@ -3,10 +3,16 @@ import { paymentInitDto } from "../dtos/payment.dtos";
 import { sendMail } from "../services/mail.service";
 import { deletePaymentById, fetchPaymentById, fetchPayments, initiatePaymentContext, searchPayments, updateCashPayment, updateTransactionPayment } from "../services/payment.service";
 import { generateOtp } from "../utils/helper";
+import jwt from "jsonwebtoken";
 
 export const RenderLandingPage = async (req: Request, res: Response) => {
     const { message } = req.query;
     res.render('index', { message });
+}
+
+export const RenderLogin = async (req: Request, res: Response) => {
+    const { message } = req.query;
+    res.render('login', { message });
 }
 
 export const RenderDashboard = async (req: Request, res: Response) => {
@@ -19,6 +25,35 @@ export const RenderDashboard = async (req: Request, res: Response) => {
         res.redirect("/?message=server error")
     }
 }
+
+export const LoginHandler = async (req: Request, res: Response) => {
+    try {
+        const { username, password } = req.body;
+        if (username == String(process.env.ADMIN_NAME) && password == String(process.env.ADMIN_PASS)) {
+            const token = jwt.sign({ username }, String(process.env.JWT_SECRET));
+            res.cookie("auth_token", token, {
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+                httpOnly: true,
+                secure: false,
+            });
+            res.redirect(`/dashboard`);
+        } else {
+            res.redirect("/login?message=Invalid credentials");    
+        }
+    } catch (error: any) {
+        console.log(error)
+        res.redirect("/?message=server error");
+    }
+};
+
+export const LogoutHandler = async (req: Request, res: Response) => {
+    await res.cookie("auth_token", null, {
+        maxAge: 0,
+        httpOnly: true,
+        secure: false,
+    });
+    res.redirect("/login");
+};
 
 export const PaymentTypeHandler = async (req: Request, res: Response) => {
     try {

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Espektro'23 | Payments</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <% if (message && message != "") { %>
+        <div class="row p-0 m-0 proBanner d-flex" id="proBanner">
+					<div class="col-md-12 p-0 m-0">
+						<div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+							<div class="ps-lg-1">
+								<div class="d-flex align-items-center justify-content-between">
+									<p class="mb-0 font-weight-medium me-3 buy-now-text"><%= message %>!</p>
+								</div>
+							</div>
+							<div class="d-flex align-items-center justify-content-between text-muted">
+                Trouble filling up the form?
+								<a href="https://wa.me/+918902094849" target="_blank" class="btn me-2 buy-now-btn border-0">&nbsp;&nbsp;Contact admin</a>
+							</div>
+						</div>
+					</div>
+				</div>
+        <% } %>
+        <div class="row w-100 m-0">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-lg-4 mx-auto">
+              <div class="card-body px-5 pt-5">
+                <h3 class="card-title text-left mb-4"><u>Espektr</u>o 2023</h3>
+                <form method="post" action="/api/login">
+                  <div class="form-group">
+                    <label for="nameInput">Username</label>
+                    <input type="text" class="form-control" id="nameInput" placeholder="name" name="username" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="contactInput">Password</label>
+                    <input type="password" class="form-control" id="contactInput" placeholder="pass" name="password" required>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-block enter-btn px-5">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <footer class="footer w-100">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"></span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> By <a href="https://linkedin.com/in/arcqq" target="_blank" class="text-info" style="text-decoration: none">Arc.</a></span>
+      </div>
+    </footer>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/vendors/select2/select2.min.js"></script>
+    <script src="/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/js/off-canvas.js"></script>
+    <script src="/js/hoverable-collapse.js"></script>
+    <script src="/js/misc.js"></script>
+    <script src="/js/settings.js"></script>
+    <script src="/js/todolist.js"></script>
+    <script src="/js/select2.js"></script>
+    <!-- endinject -->
+  </body>
+</html>
