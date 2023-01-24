@@ -36,8 +36,8 @@
 
 
                                         <div class="text-center">
-                                            <button type="submit"
-                                                class="btn btn-primary btn-block enter-btn px-5" onclick="downloadSVG()">
+                                            <button
+                                                class="btn btn-primary btn-block enter-btn px-5" id="download-btn">
                                                 Download Ticket.
                                             </button>
                                         </div>
@@ -61,10 +61,9 @@
       </footer>
 
     <div id="svg-wrap" style="display: none;">
-        <svg width="862" height="500" viewBox="0 0 862 500" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg id="ticket-svg" width="862" height="500" viewBox="0 0 862 500" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
-                <style type="text/css">@import url('https://fonts.googleapis.com/css?family=Jost');</style>
-                <style type="text/css">@import url('https://fonts.googleapis.com/css?family=Baloo');</style>
+                <style type="text/css">@import url('https://fonts.googleapis.com/css?family=Roboto');</style>
             </defs>
             <g id="espektro-ticket" clip-path="url(#clip0_1_2)">
             <g id="Layer">
@@ -1188,24 +1187,24 @@
             </g>
             </g>
             <g id="Header" filter="url(#filter0_d_1_2)">
-            <text fill="#FFC9B5" xml:space="preserve" style="white-space: pre" font-family="Jost" font-size="22" font-weight="bold" letter-spacing="0em"><tspan x="630.348" y="54.645">&#x2028;</tspan></text>
-            <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Jost" font-size="22" font-weight="bold" letter-spacing="0em"><tspan x="218.041" y="54.645">Kalyani Government Engineering College</tspan><tspan x="321.639" y="86.645">Student&#x2019;s Association</tspan></text>
+            <text fill="#FFC9B5" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="22" font-weight="bold" letter-spacing="0em"><tspan x="620.046" y="55.0195">&#x2028;</tspan></text>
+            <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="21" font-weight="bold" letter-spacing="0em"><tspan x="229.073" y="55.0195">Kalyani Government Engineering College</tspan><tspan x="323.39" y="88.0195">Student&#x2019;s Association</tspan></text>
             </g>
-            <text id="Serial" fill="white" xml:space="preserve" style="white-space: pre" font-family="Jost" font-size="18" font-weight="600" letter-spacing="0em"><tspan x="26.1816" y="47.6523">Sl No: <%= data.serial %></tspan></text>
+            <text id="Serial" fill="white" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="18" font-weight="800" letter-spacing="0em"><tspan x="26.1816" y="47.6523">Sl No: <%= data.serial %></tspan></text>
             <g id="ESPEKTRO 23" filter="url(#filter1_d_1_2)">
-            <text fill="#551834" xml:space="preserve" style="white-space: pre" font-family="Baloo" font-size="36" letter-spacing="0.05em"><tspan x="315.432" y="154.968">ESPEKTRO 23</tspan></text>
+            <text fill="#551834" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="32" font-weight="800" letter-spacing="0.05em"><tspan x="307.363" y="150.305">ESPEKTRO 23</tspan></text>
             </g>
-            <g id="ESPEKTRO FEES" filter="url(#filter2_di_1_2)">
-            <text fill="#6D2942" xml:space="preserve" style="white-space: pre" font-family="Baloo" font-size="24" letter-spacing="0em"><tspan x="346.41" y="180.312">ESPEKTRO FEES</tspan></text>
+            <g id="FEES RECEIPT" filter="url(#filter2_di_1_2)">
+            <text fill="#6D2942" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="22" font-weight="500" letter-spacing="0em"><tspan x="353.301" y="177.203">FEES RECEIPT</tspan></text>
             </g>
-            <text id="Data" fill="#551834" xml:space="preserve" style="white-space: pre" font-family="Baloo" font-size="18" letter-spacing="0em"><tspan x="153" y="232.234">Name: <tspan style="text-transform: uppercase;"><%= data.name %></tspan>&#x2028;</tspan><tspan x="153" y="257.234">Dept: <%= data.department %>&#x2028;</tspan><tspan x="153" y="282.234">Year: <%= data.year %>&#10;</tspan><tspan x="153" y="307.234">Amount: ₹ 1000.00 &#x2028;</tspan><tspan x="153" y="332.234">Transaction ID: <%= data.transactionId %>&#x2028;</tspan><tspan x="153" y="357.234">Transaction Date: <%= (data.transactionDate).toLocaleDateString("en-US",
-                {year: 'numeric' , month: 'short' , day: 'numeric'
-                }) %>&#x2028;</tspan><tspan x="153" y="382.234">Mode of Payment: <tspan style="text-transform: uppercase;"><%= mode %></tspan> &#x2028;</tspan><tspan x="153" y="407.234">Collected by: SOUVIK CHATTERJEE</tspan></text>
+            <text id="Data" fill="#551834" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="18" font-weight="800" letter-spacing="0em"><tspan x="153" y="232.234">Name: <tspan style="text-transform: uppercase;"><%= data.name %></tspan>&#x2028;</tspan><tspan x="153" y="257.234">Dept: <%= data.department %>&#x2028;</tspan><tspan x="153" y="282.234">Year: <%= data.year %>&#10;</tspan><tspan x="153" y="307.234">Amount: ₹ 1000.00 &#x2028;</tspan><tspan x="153" y="332.234">Transaction ID: <%= data.transactionId %>&#x2028;</tspan><tspan x="153" y="357.234">Transaction Date: <%= (data.transactionDate).toLocaleDateString("en-US",
+                            {year: 'numeric' , month: 'short' , day: 'numeric'
+                            }) %>&#x2028;</tspan><tspan x="153" y="382.234">Mode of Payment: <tspan style="text-transform: uppercase;"><%= mode %></tspan> &#x2028;</tspan><tspan x="153" y="407.234">Collected by: SOUVIK CHATTERJEE</tspan></text>
             <rect id="WhatsApp Image 2023-01-18 at 1.30 1" x="487" y="390" width="122" height="51" fill="url(#pattern0)"/>
-            <text id="Cashier&#226;&#128;&#153;s Signature&#226;&#128;&#168;Student&#226;&#128;&#153;s Association" fill="#551834" xml:space="preserve" style="white-space: pre" font-family="Baloo" font-size="18" letter-spacing="0em"><tspan x="448.381" y="460.734">Cashier&#x2019;s Signature&#x2028;</tspan><tspan x="438.256" y="480.734">Student&#x2019;s Association</tspan></text>
+            <text id="Cashier&#226;&#128;&#153;s Signature&#226;&#128;&#168;Student&#226;&#128;&#153;s Association" fill="#551834" xml:space="preserve" style="white-space: pre" font-family="Roboto" font-size="18" font-weight="bold" letter-spacing="0em"><tspan x="448.848" y="462.152">Cashier&#x2019;s Signature&#x2028;</tspan><tspan x="439.364" y="482.152">Student&#x2019;s Association</tspan></text>
             </g>
             <defs>
-            <filter id="filter0_d_1_2" x="215.669" y="37.84" width="430.559" height="58.644" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_d_1_2" x="226.47" y="38.5" width="408.898" height="58.7148" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dy="5"/>
@@ -1215,7 +1214,7 @@
             <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
             </filter>
-            <filter id="filter1_d_1_2" x="313.772" y="132.5" width="236.552" height="31.148" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter1_d_1_2" x="305.473" y="124.037" width="252.582" height="34.3145" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dy="4"/>
@@ -1225,7 +1224,7 @@
             <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
             </filter>
-            <filter id="filter2_di_1_2" x="343.97" y="165" width="175.905" height="23.432" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter2_di_1_2" x="350.824" y="159.691" width="162.395" height="25.543" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dy="4"/>
@@ -3572,7 +3571,8 @@
             </clipPath>
             <image id="image0_1_2" data-name="WhatsApp Image 2023-01-18 at 1.30.png" width="960" height="287" xlink:href="data:image/png;base64,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"/>
             </defs>
-            </svg>
+        </svg>
+            
             
     </div>
 
@@ -3581,7 +3581,7 @@
             const svg = document.getElementById('svg-wrap').innerHTML;
             const blob = new Blob([svg.toString()]);
             const element = document.createElement("a");
-            element.download = "w3c.svg";
+            element.download = "espektro-ticket.svg";
             element.href = window.URL.createObjectURL(blob);
             element.click();
             element.remove();
@@ -3603,6 +3603,7 @@
     <script src="/js/todolist.js"></script>
     <script src="/js/select2.js"></script>
     <!-- endinject -->
+    <script type="module" src="/js/download-svg.js"></script>
 </body>
 
 </html>
