@@ -22,7 +22,7 @@ export const RenderDashboard = async (req: Request, res: Response) => {
         const data = await fetchPayments(page, limit);
         res.render("dashboard", { page, data });
     } catch (error: any) {
-        res.redirect("/?message=server error")
+        res.redirect("/?message=Server error")
     }
 }
 
@@ -42,7 +42,7 @@ export const LoginHandler = async (req: Request, res: Response) => {
         }
     } catch (error: any) {
         console.log(error)
-        res.redirect("/?message=server error");
+        res.redirect("/?message=Server error");
     }
 };
 
@@ -93,7 +93,7 @@ export const PaymentTypeHandler = async (req: Request, res: Response) => {
         }
     } catch (error: any) {
         console.log(error)
-        res.redirect("/?message=server error");
+        res.redirect("/?message=Server error");
     }
 };
 
@@ -109,7 +109,7 @@ export const OTPHandler = async (req: Request, res: Response) => {
         res.render("success", { id, mode: "cash", data })
     } catch (error: any) {
         await deletePaymentById(id);
-        res.redirect("/?message=server error")
+        res.redirect("/?message=Server error")
     }
 };
 
@@ -121,7 +121,7 @@ export const TransactionHandler = async (req: Request, res: Response) => {
         res.render("success", { id, mode: "online", data })
     } catch (error: any) {
         await deletePaymentById(id);
-        res.redirect("/?message=server error")
+        res.redirect("/?message=Server error")
     }
 };
 
@@ -131,6 +131,6 @@ export const SearchHandler = async (req: Request, res: Response) => {
         const data = await searchPayments(query);
         res.render("dashboard", { page: 1, data })
     } catch (error: any) {
-        res.redirect("/?message=server error")
+        res.redirect("/?message=Server error")
     }
 };
