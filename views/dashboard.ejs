@@ -23,6 +23,47 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/images/favicon.ico" />
+    <style>        
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 9999; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal Content */
+        .modal-content {
+          color: #000;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 60%;
+        }
+        
+        /* The Close Button */
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        </style>
 </head>
 
 <body>
@@ -190,9 +231,10 @@
                                                                 {year: 'numeric' , month: 'short' , day: 'numeric' }) %>
                                                         </td>
                                                         <td>
-                                                            <a href="/receipt/<%= data[i]._id %>">
+                                                            <a data-image="<%= data[i].receiptUrl %>"
+                                                                data-mode="<%= data[i].paymentType %>" onclick="showModal('<%= data[i].paymentType %>', '<%= data[i].receiptUrl %>')">
                                                                 <label for=""
-                                                                    class="badge badge-outline-success">Download</label>
+                                                                    class="badge badge-outline-success">Preview</label>
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -204,9 +246,9 @@
                                                 style="width: max-content;">
                                                 <a href="/dashboard?limit=10&page=<%= page > 0 ? page - 1 : 0 %>"
                                                     class="btn btn-outline-secondary">◀
-                                                    </a>
-                                                        <a href="/dashboard?limit=10&page=<%= page + 1 %>"
-                                                            class="btn btn-outline-secondary">▶</a>
+                                                </a>
+                                                <a href="/dashboard?limit=10&page=<%= page + 1 %>"
+                                                    class="btn btn-outline-secondary">▶</a>
                                             </div>
                                         </div>
                                     </div>
@@ -220,6 +262,15 @@
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="img-wrap"></div>
+            </div>
+
+        </div>
     </div>
     <!-- container-scroller -->
 
@@ -248,6 +299,7 @@
     <script src="/js/misc.js"></script>
     <script src="/js/settings.js"></script>
     <script src="/js/todolist.js"></script>
+    <script src="/js/modal-demo.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.13.1/datatables.min.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
