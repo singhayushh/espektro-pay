@@ -8,7 +8,7 @@ pdfBtn.addEventListener("click", () => {
   const filename = "espektro-ticket.pdf";
 
   saveSvgAsPng.svgAsPngUri(element).then((dataUrl) => {
-    const doc = new jsPDF('l', 'mm', [228, 132]);
+    const doc = new jsPDF('l', 'mm', [225.425, 130.175]);
     doc.addImage(dataUrl, "PNG", 0, 0).save(filename);
   });
 });
